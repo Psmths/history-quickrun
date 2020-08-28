@@ -42,15 +42,17 @@ print(ANSI_GREEN + 'Commands matching ' + sys.argv[1] + ':' + ANSI_HALT + '\n')
 for i in range(len(uniq_matched_history)):
     print(str(i) + ') ' + uniq_matched_history[i].replace('\n',''))
 
-selection = input(ANSI_GREEN + 'Command to run or Q to cancel: ' + ANSI_HALT)
+selection = input(ANSI_GREEN + 'Command(s) to run or Q to cancel: ' + ANSI_HALT)
 
 if selection.lower() == "q":
     exit()
 
-try:
-    selection_index = int(selection)
-except ValueError:
-    print('Incorrectly formatted input caught!')
-    exit()
+selections = selection.split(',')
 
-os.system(uniq_matched_history[int(selection)])
+for index in selections:
+    try:
+        selection_index = int(index)
+    except ValueError:
+        exit()
+
+    os.system(uniq_matched_history[selection_index])
