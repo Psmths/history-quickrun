@@ -33,10 +33,14 @@ if len(matched_history) == 0:
     print('No commands match your query.')
     exit()
 
+#Remove duplicate entries
+uniq_matched_history = []
+[uniq_matched_history.append(x) for x in matched_history if x not in uniq_matched_history]
+
 print(ANSI_GREEN + 'Commands matching ' + sys.argv[1] + ':' + ANSI_HALT + '\n')
 
-for i in range(len(matched_history)):
-    print(str(i) + ') ' + matched_history[i].replace('\n',''))
+for i in range(len(uniq_matched_history)):
+    print(str(i) + ') ' + uniq_matched_history[i].replace('\n',''))
 
 selection = input(ANSI_GREEN + 'Command to run or Q to cancel: ' + ANSI_HALT)
 
@@ -49,4 +53,4 @@ except ValueError:
     print('Incorrectly formatted input caught!')
     exit()
 
-os.system(matched_history[int(selection)])
+os.system(uniq_matched_history[int(selection)])
