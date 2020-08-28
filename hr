@@ -2,10 +2,12 @@
 import sys
 import re
 import os
-from subprocess import Popen
 
 homedir = os.path.expanduser('~')
 regex = re.compile(sys.argv[1])
+
+ANSI_GREEN = '\033[92m'
+ANSI_HALT = '\033[0m'
 
 history = []
 matched_history = []
@@ -22,7 +24,7 @@ if len(matched_history) == 0:
     print('No commands match your query.')
     exit()
 
-print('Commands matching ' + sys.argv[1])
+print(ANSI_GREEN + 'Commands matching ' + sys.argv[1] + ':' + ANSI_HALT)
 
 for i in range(len(matched_history)):
     print(str(i) + ') ' + matched_history[i].replace('\n',''))
