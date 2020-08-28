@@ -3,8 +3,17 @@ import sys
 import re
 import os
 
+if not sys.argv[1:]:
+    print('You must supply a search expression!')
+    exit()
+
 homedir = os.path.expanduser('~')
-regex = re.compile(sys.argv[1])
+
+try:
+    regex = re.compile(sys.argv[1])
+except re.error:
+    print('Invalid search expression!')
+    exit()
 
 ANSI_GREEN = '\033[92m'
 ANSI_HALT = '\033[0m'
