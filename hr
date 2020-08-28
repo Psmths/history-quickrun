@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+import sys
+import re
+import os
+from subprocess import Popen
+
+homedir = os.path.expanduser('~')
+regex = re.compile(sys.argv[1])
+
+history = []
+matched_history = []
+
+with open(homedir+"/.bash_history") as histfile:
+    for line in histfile:
+        history.append(line)
+
+for command in history:
+    if regex.match(command):
+        matched_history.append(command)
+
+if len(matched_history) == 0:
+    print('No commands match your query.')
+    exit()
+
+print('Commands matching ' + sys.argv[1])
+
+for i in range(len(matched_history)):
+    print(str(i) + ') ' + matched_history[i].replace('\n',''))
+
+selection = input('Command to run or Q to cancel: ')
+
+if selection.lower() == "q":
+    exit()
+
+try:
+    selection_index = int(selection)
+except ValueError:
+    print('Incorrectly formatted input caught!')
+    exit()
+
+os.system(matched_history[int(selection)])
