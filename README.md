@@ -5,3 +5,11 @@
 ```
 ./hr 'partial command'
 ```
+
+The input argument being a regex can be used to search for multiple commands:
+
+```
+./hr 'sys|echo'
+```
+
+Additionally, the script allows you to run a chain of commands successively by entering a comma separated list of indices such as 3,7,13.
