@@ -37,7 +37,7 @@ if len(matched_history) == 0:
 uniq_matched_history = []
 [uniq_matched_history.append(x) for x in matched_history if x not in uniq_matched_history]
 
-print(ANSI_GREEN + 'Commands matching ' + sys.argv[1] + ':' + ANSI_HALT + '\n')
+print(ANSI_GREEN + 'Commands matching ""' + sys.argv[1] + '"":' + ANSI_HALT + '\n')
 
 for i in range(len(uniq_matched_history)):
     print(str(i) + ') ' + uniq_matched_history[i].replace('\n',''))
