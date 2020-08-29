@@ -13,3 +13,9 @@ The input argument being a regex can be used to search for multiple commands:
 ```
 
 Additionally, the script allows you to run a chain of commands successively by entering a comma separated list of indices such as 3,7,13.
+
+It should be noted that the current shell session history is stored in memory, whereas this program reads from a history file. In order to update the history when the command is run you may consider setting an appropriate alias such as:
+
+```
+alias h='history -a; hr $1'
+```
