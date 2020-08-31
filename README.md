@@ -20,5 +20,6 @@ It should be noted that the current shell session history is stored in memory, w
 alias h='history -a; hr $1'
 ```
 
-#Example
+# Example
+
 ![Example](/media/screenfetch.png "Example Screenshot")
